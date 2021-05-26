@@ -1,18 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameMenager : MonoBehaviour, IEnumPlayer
 {
+
+    IEnumPlayer.Player playerWin = IEnumPlayer.Player.Empty;
+    public static Action<int> PlayerClick;
     IEnumPlayer.Player activePlayer = IEnumPlayer.Player.Empty;
     [SerializeReference] BoardMenager _board;
     [SerializeReference] ImageMenager _spriteMenager;
     [SerializeReference] Sprite _empty;
+    [SerializeReference] Line line;
     Sprite playerX;
     Sprite playerO;
 
     private void Awake()
     {
+       
         activePlayer = IEnumPlayer.Player.X;
         playerX = _spriteMenager.GetImageX(0);
         playerO = _spriteMenager.GetImageY(0);
@@ -22,6 +28,7 @@ public class GameMenager : MonoBehaviour, IEnumPlayer
     {
         _board.GetButtonDate(index).Player = activePlayer;
         _board.GetButtonDate(index).Sprite = GetSpriteActivePlayer();
+        PlayerClick(index);
         _board.Check();
         ChangePlayer();
     }
@@ -41,15 +48,26 @@ public class GameMenager : MonoBehaviour, IEnumPlayer
     }
     private void OnEnable()
     {
-        _board.ShowWiner += ShwoWiner;
+        //events.Win += Win;
+        Line.GameWin += GameWin;
+        BoardMenager.ActiveLineComponent += line.Enable;
+        _board.ShowPlayerWiner += ShwoWiner;
     }
     private void OnDisable()
     {
-        _board.ShowWiner -= ShwoWiner;
+        //events.Win -= Win;
+        Line.GameWin -= GameWin;
+        BoardMenager.ActiveLineComponent -= line.Enable;
+        _board.ShowPlayerWiner -= ShwoWiner;
     }
     void ShwoWiner(IEnumPlayer.Player player)
     {
+        playerWin = player;
         Debug.Log(player);
+    }
+    void GameWin()
+    {
+        Debug.Log("WIN!! "+ playerWin);
     }
     void ChangePlayer()
     {
@@ -62,4 +80,5 @@ public class GameMenager : MonoBehaviour, IEnumPlayer
             activePlayer = IEnumPlayer.Player.X;
         }
     }
+   
 }
