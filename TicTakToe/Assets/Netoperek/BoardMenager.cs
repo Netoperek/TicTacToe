@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class BoardMenager : MonoBehaviour, IEnumPlayer
 {
-    public event Action<IEnumPlayer.Player> ShowPlayerWiner;
-    
+    //public event Action<IEnumPlayer.Player> ShowPlayerWiner;
     public static event Action DisableButton;
     public static event Action<int> EnableChackButton;
     public static event Action ActiveLineComponent;
@@ -36,9 +35,10 @@ public class BoardMenager : MonoBehaviour, IEnumPlayer
         #region Poziomo
         if (filds[11].Player != IEnumPlayer.Player.Empty && filds[11].Player == filds[12].Player && filds[11].Player == filds[13].Player)
         {
-            if (ShowPlayerWiner != null)
+            if (Events.WhoWin != null)
             {
-                ShowPlayerWiner(filds[11].Player);
+                Events.WhoWin.Invoke(filds[11].Player);
+
             }
             if (EnableChackButton != null)
             {
@@ -54,13 +54,13 @@ public class BoardMenager : MonoBehaviour, IEnumPlayer
             {
                 DisableButton();
             }
-          
+
         }
         else if (filds[21].Player != IEnumPlayer.Player.Empty && filds[21].Player == filds[22].Player && filds[21].Player == filds[23].Player)
         {
-            if (ShowPlayerWiner != null)
+            if (Events.WhoWin != null)
             {
-                ShowPlayerWiner(filds[21].Player);
+                Events.WhoWin.Invoke(filds[21].Player);
             }
             if (EnableChackButton != null)
             {
@@ -79,9 +79,9 @@ public class BoardMenager : MonoBehaviour, IEnumPlayer
         }
         else if (filds[31].Player != IEnumPlayer.Player.Empty && filds[31].Player == filds[32].Player && filds[31].Player == filds[33].Player)
         {
-            if (ShowPlayerWiner != null)
+            if (Events.WhoWin != null)
             {
-                ShowPlayerWiner(filds[31].Player);
+                Events.WhoWin.Invoke(filds[31].Player);
             }
             if (EnableChackButton != null)
             {
@@ -102,9 +102,9 @@ public class BoardMenager : MonoBehaviour, IEnumPlayer
         #region Pionowo
         else if (filds[11].Player != IEnumPlayer.Player.Empty && filds[11].Player == filds[21].Player && filds[11].Player == filds[31].Player)
         {
-            if (ShowPlayerWiner != null)
+            if (Events.WhoWin != null)
             {
-                ShowPlayerWiner(filds[11].Player);
+                Events.WhoWin.Invoke(filds[11].Player);
             }
             if (EnableChackButton != null)
             {
@@ -123,9 +123,9 @@ public class BoardMenager : MonoBehaviour, IEnumPlayer
         }
         else if (filds[12].Player != IEnumPlayer.Player.Empty && filds[12].Player == filds[22].Player && filds[12].Player == filds[32].Player)
         {
-            if (ShowPlayerWiner != null)
+            if (Events.WhoWin != null)
             {
-                ShowPlayerWiner(filds[12].Player);
+                Events.WhoWin.Invoke(filds[12].Player);
             }
             if (EnableChackButton != null)
             {
@@ -144,9 +144,9 @@ public class BoardMenager : MonoBehaviour, IEnumPlayer
         }
         else if (filds[13].Player != IEnumPlayer.Player.Empty && filds[13].Player == filds[23].Player && filds[13].Player == filds[33].Player)
         {
-            if (ShowPlayerWiner != null)
+            if (Events.WhoWin != null)
             {
-                ShowPlayerWiner(filds[13].Player);
+                Events.WhoWin.Invoke(filds[13].Player);
             }
             if (EnableChackButton != null)
             {
@@ -167,9 +167,9 @@ public class BoardMenager : MonoBehaviour, IEnumPlayer
         #region Skos
         else if (filds[11].Player != IEnumPlayer.Player.Empty && filds[11].Player == filds[22].Player && filds[11].Player == filds[33].Player)
         {
-            if (ShowPlayerWiner != null)
+            if (Events.WhoWin != null)
             {
-                ShowPlayerWiner(filds[11].Player);
+                Events.WhoWin.Invoke(filds[11].Player);
             }
             if (EnableChackButton != null)
             {
@@ -188,9 +188,9 @@ public class BoardMenager : MonoBehaviour, IEnumPlayer
         }
         else if (filds[13].Player != IEnumPlayer.Player.Empty && filds[13].Player == filds[22].Player && filds[13].Player == filds[31].Player)
         {
-            if (ShowPlayerWiner != null)
+            if (Events.WhoWin != null)
             {
-                ShowPlayerWiner(filds[13].Player);
+                Events.WhoWin.Invoke(filds[13].Player);
             }
             if (EnableChackButton != null)
             {
@@ -208,5 +208,41 @@ public class BoardMenager : MonoBehaviour, IEnumPlayer
             }
         }
         #endregion
+        #region Daraw
+        else
+        {
+            int conter = 0;
+            foreach (var item in filds)
+            {
+                if (item.Value.ImageVisible)
+                {
+                    conter++;
+                }
+            }
+            if (conter == 9)
+            {
+                if (Events.WhoWin != null)
+                {
+                    Events.WhoWin.Invoke(IEnumPlayer.Player.Empty);
+                }
+                if (Events.ShowDialogue != null)
+                {
+                    Events.ShowDialogue.Invoke(IEnumPlayer.Player.Empty);
+                }
+                if (Events.AddPoint != null)
+                {
+                    Events.AddPoint.Invoke(IEnumPlayer.Player.Empty);
+                }
+               
+                return;
+            }
+            if (Events.PlayerMoved != null)
+            {
+                Events.PlayerMoved.Invoke();
+            }
+
+        }
+        #endregion
     }
+
 }

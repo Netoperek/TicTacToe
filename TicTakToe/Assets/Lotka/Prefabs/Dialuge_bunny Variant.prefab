@@ -1,5 +1,28 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1132965429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1621556079338668620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 794cab0ae16ec0544b911df1fc01bf36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  puchar: {fileID: 1621556080169013228}
+  tr:
+  - {fileID: 1621556079691642611}
+  - {fileID: 1621556079632270184}
+  - {fileID: 1621556080342482743}
+  - {fileID: 1621556080646839749}
+  - {fileID: 1621556079096379396}
+  - {fileID: 1621556080728282243}
+  speedRotation: 45
+  speedScale: 0.8
+  maxDegrees: 20
 --- !u!1001 &5592171587503461846
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9,7 +32,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6564997869461723034, guid: 51016e1818e31e944b99ddf265be57ca, type: 3}
       propertyPath: m_Name
-      value: Dialuge_bunny
+      value: Dialuge_bunny Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 6564997869461723034, guid: 51016e1818e31e944b99ddf265be57ca, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6564997869461723036, guid: 51016e1818e31e944b99ddf265be57ca, type: 3}
       propertyPath: m_UseSpriteMesh
@@ -155,6 +182,38 @@ PrefabInstance:
       propertyPath: m_Text
       value: 'Bunny Win! '
       objectReference: {fileID: 0}
+    - target: {fileID: 6564997870765714229, guid: 51016e1818e31e944b99ddf265be57ca, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6564997870765714229, guid: 51016e1818e31e944b99ddf265be57ca, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6564997870765714229, guid: 51016e1818e31e944b99ddf265be57ca, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6564997870765714229, guid: 51016e1818e31e944b99ddf265be57ca, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6564997870765714229, guid: 51016e1818e31e944b99ddf265be57ca, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 6564997870765714229, guid: 51016e1818e31e944b99ddf265be57ca, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DialoguesMenager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6564997870765714229, guid: 51016e1818e31e944b99ddf265be57ca, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6564997870765714229, guid: 51016e1818e31e944b99ddf265be57ca, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6564997870846607698, guid: 51016e1818e31e944b99ddf265be57ca, type: 3}
       propertyPath: m_Name
       value: Bunny (3)
@@ -225,3 +284,43 @@ PrefabInstance:
       objectReference: {fileID: 2783694230029552461, guid: 06fd7adfb5380e94f847c1ceecb4626e, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51016e1818e31e944b99ddf265be57ca, type: 3}
+--- !u!1 &1621556079338668620 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6564997869461723034, guid: 51016e1818e31e944b99ddf265be57ca, type: 3}
+  m_PrefabInstance: {fileID: 5592171587503461846}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1621556080169013228 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6564997871365806650, guid: 51016e1818e31e944b99ddf265be57ca, type: 3}
+  m_PrefabInstance: {fileID: 5592171587503461846}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1621556079691642611 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6564997871018976037, guid: 51016e1818e31e944b99ddf265be57ca, type: 3}
+  m_PrefabInstance: {fileID: 5592171587503461846}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1621556080342482743 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6564997870596729569, guid: 51016e1818e31e944b99ddf265be57ca, type: 3}
+  m_PrefabInstance: {fileID: 5592171587503461846}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1621556080646839749 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6564997870904756243, guid: 51016e1818e31e944b99ddf265be57ca, type: 3}
+  m_PrefabInstance: {fileID: 5592171587503461846}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1621556079096379396 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6564997870289104338, guid: 51016e1818e31e944b99ddf265be57ca, type: 3}
+  m_PrefabInstance: {fileID: 5592171587503461846}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1621556080728282243 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6564997870846607701, guid: 51016e1818e31e944b99ddf265be57ca, type: 3}
+  m_PrefabInstance: {fileID: 5592171587503461846}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1621556079632270184 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6564997869755324094, guid: 51016e1818e31e944b99ddf265be57ca, type: 3}
+  m_PrefabInstance: {fileID: 5592171587503461846}
+  m_PrefabAsset: {fileID: 0}

@@ -5,39 +5,13 @@ using UnityEngine;
 
 public class Line : MonoBehaviour
 {
-    public static event Action GameWin;
+   // public static event Action GameWin;
     public bool[] ListPresents = new bool[3];
     [SerializeField] bool isPC = false;
     Vector2[] linePos;
     [SerializeReference] LineRenderer line;
     [SerializeReference] EdgeCollider2D edgeCollider;
     [SerializeReference] Rigidbody2D rg;
-    private void OnEnable()
-    {
-        rg.simulated = false;
-        for (int i = 0; i < ListPresents.Length; i++)
-        {
-            ListPresents[i] = false;
-        }
-        // GameMenager.gameMenager.events.ChackCrossedBox += AddPresent;
-        linePos = new Vector2[2];
-        line.positionCount = 2;
-    }
-    private void OnDisable()
-    {
-        rg.simulated = false;
-        for (int i = 0; i < ListPresents.Length; i++)
-        {
-            ListPresents[i] = false;
-        }
-        // GameMenager.gameMenager.events.ChackCrossedBox -= AddPresent;
-        edgeCollider.enabled = false;
-       // line.enabled = false;
-        linePos[0] = Vector2.zero;
-        linePos[1] = Vector2.zero;
-       // line.SetPosition(0, Vector3.zero);
-       // line.SetPosition(1, Vector3.zero);
-    }
     
     private void Update()
     {
@@ -149,9 +123,10 @@ public class Line : MonoBehaviour
     {
         if (ListPresents[0] == true && ListPresents[1] == true && ListPresents[2] == true)
         {
-            if (GameWin != null)
+            if (Events.GameWin != null)
             {
-                GameWin();
+                Events.GameWin.Invoke();
+                Reset();
             }
             
             this.enabled = false;
@@ -163,6 +138,38 @@ public class Line : MonoBehaviour
         }
        
     }
+    private void OnEnable()
+    {
+        Events.RestartBorad += Reset;
+        Events.RestartGame += Reset;
 
+        rg.simulated = false;
+        for (int i = 0; i < ListPresents.Length; i++)
+        {
+            ListPresents[i] = false;
+        }
+        // GameMenager.gameMenager.events.ChackCrossedBox += AddPresent;
+        linePos = new Vector2[2];
+        line.positionCount = 2;
+    }
+    private void OnDisable()
+    {
+        Events.RestartBorad += Reset;
+        Events.RestartGame += Reset;
+
+        rg.simulated = false;
+        for (int i = 0; i < ListPresents.Length; i++)
+        {
+            ListPresents[i] = false;
+        }
+        // GameMenager.gameMenager.events.ChackCrossedBox -= AddPresent;
+        edgeCollider.enabled = false;
+       // line.enabled = false;
+        linePos[0] = Vector2.zero;
+        linePos[1] = Vector2.zero;
+       // line.SetPosition(0, Vector3.zero);
+       // line.SetPosition(1, Vector3.zero);
+    }
+    
 
 }
